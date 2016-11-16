@@ -16,12 +16,12 @@ La solución inicial será generada aleatoriamente, el rango de los índices ser
 ### Generación de vecinos
 Para generar los vecinos solamente se podrá emplear el operador de **intercambio de dos elementos**. Esto nos permite un número máximo de vecinos de:
 
-![Máximo de Vecinos](http://www.sciweavers.org/tex2img.php?eq=%7CV%7C%3D%5Csum_%7Bi%3D1%7D%5E%7Bn-2%7Di%3D%5Cfrac%7B%5Cbig%28n-1%5Cbig%29%2A%5Cbig%28n-2%5Cbig%29%7D%7B2%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![Máximo de Vecinos1](http://latex.codecogs.com/gif.latex?%5Csum_%7Bi%3D1%7D%5E%7Bn-2%7Di%3D%5Cfrac%7B%28n-1%29*%28n-2%29%7D%7B2%7D)
 
 ### Función de coste
 Para calcular el coste total del problema se empleará la siguiente función:
 
-![Función de coste](http://www.sciweavers.org/tex2img.php?eq=C%5Cbig%28S%5Cbig%29%3D%20D%280%2CS%5B0%5D%29%20%2B%20%5Csum_%7Bi%3D1%7D%5E%7Bn-2%7D%20D%5Cbig%28S%5Bi-1%5D%2CS%5Bi%5D%5Cbig%29%20%2B%20D%5Cbig%28S%28%5Bn-2%5D%2C0%29%5Cbig%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![Función de coste](http://latex.codecogs.com/gif.latex?C%28S%29%3D%20D%280%2C%20S%5B0%5D%29%20&plus;%20%5Csum_%7Bi%3D1%7D%5E%7Bn-2%7D&plus;D%28S%5Bi-1%5D%2CS%5Bi%5D%29%20&plus;%20D%28S%5Bn-2%5D%2C0%29)
 
 ### Mecanismo de selección de soluciones
 El criterio de aceptación será el **primero mejor** de los vecinos.
