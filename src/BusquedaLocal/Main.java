@@ -10,20 +10,23 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Inicio etapa de inicialización
         if(args.length==0){ // No se pasa ningún argumento
-            FileRead.distancias("distancias_10.txt");
-            FileRead.aleatorio();
+            Operations.distancias("distancias_10.txt");
+            Operations.aleatorio();
         }
         else{
             if(args.length == 1){ // Se introdujo solo el archivo de distancias como argumento
-                FileRead.distancias(args[0]);
-                FileRead.aleatorio();
+                Operations.distancias(args[0]);
+                Operations.aleatorio();
             }
             else{ // Se introdujo el archivo de distancias y el de aleatorios como argumento
-                FileRead.distancias(args[0]);
-                FileRead.aleatorio(args[1]);
+                Operations.distancias(args[0]);
+                Operations.aleatorio(args[1]);
             }
         }
+
+        Operations.initializeNeighbors();
 
     }
 }
