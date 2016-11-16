@@ -16,7 +16,7 @@ La solución inicial será generada aleatoriamente, el rango de los índices ser
 ### Generación de vecinos
 Para generar los vecinos solamente se podrá emplear el operador de **intercambio de dos elementos**. Esto nos permite un número máximo de vecinos de:
 
-![Máximo de Vecinos](http://www.sciweavers.org/tex2img.php?eq=%5Csum_%7Bi%3D1%7D%5E%7Bn-2%7D%20i%3D%20%5Cfrac%7B%5Cbig%28n-1%5Cbig%29%20%2A%20%5Cbig%28n-2%5Cbig%29%7D%20%7B2%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+![Máximo de Vecinos](http://www.sciweavers.org/tex2img.php?eq=%5Csum_%7Bi%3D1%7D%5E%7Bn-2%7D%20i%3D%20%5Cfrac%20%7B%5Cbig%28n-1%5Cbig%29%20%2A%20%5Cbig%28n-2%5Cbig%29%7D%20%7B2%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
 
 ### Función de coste
 Para calcular el coste total del problema se empleará la siguiente función:
