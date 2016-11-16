@@ -1,6 +1,6 @@
-# PracticaBusquedaLocal
+# Práctica de búsqueda local
 ## Descripción
-Práctica 1 del módulo 2 de la asignatura Ingeniería del Conocimiento donde se empleará el algoritmo de Búsqueda Local al TSP (Traveling Salesman Problem) para n=10 ciudades.
+Práctica 1 del módulo 2 de la asignatura Ingeniería del Conocimiento donde se aplicará el algoritmo de Búsqueda Local al TSP (Traveling Salesman Problem) para n=10 ciudades.
 
 ### Restricciones
 - La ciudad de partida y llegada tiene que ser la misma, en nuestro caso, la ciudad es 0.
