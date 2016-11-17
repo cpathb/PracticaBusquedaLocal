@@ -112,7 +112,9 @@ public class Operations{
     public static void intercambio(String FileName){
     }
 
-    // Variable para inicializar la lista de vecinos generados
+    /*
+        Función para inicializar la lista de vecinos generados
+    */
     public static void initializeNeighbors(){
         int i=0;
         int neighborNumber = ((Main.ciudades-1)*(Main.ciudades-2)/2);
@@ -120,5 +122,29 @@ public class Operations{
             Main.Vecinos.add(0);
             i++;
         }
+    }
+
+    /*
+        Función para convertir un par de números a una posición en la lista, tanto de distancias como de vecinos generados
+    */
+    private static int conversorTuplaPosicion(int a, int b){
+        int mayor, menor, posicion=0,i=1;
+        if(a>b){
+            mayor=a;
+            menor=b;
+        }
+        else{
+            mayor=b;
+            menor=a;
+        }
+
+        while(i<mayor){
+            posicion+=i;
+            i++;
+        }
+
+        posicion+=menor;
+
+        return posicion;
     }
 }
