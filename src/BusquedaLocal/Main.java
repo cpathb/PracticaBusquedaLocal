@@ -29,5 +29,11 @@ public class Main {
         }
 
         Operations.initializeNeighbors();
+        int i=0;
+        while(i<50){
+            System.out.println(i+1);
+            Operations.intercambio();
+            i++;
+        }
     }
 }
