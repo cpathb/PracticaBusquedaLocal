@@ -76,17 +76,26 @@ public class Operations{
     public static void aleatorio(String FileName) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(FileName)); // Abrimos el archivo
-            int i = 0;
+            int i = 0,randomNumber;
             String line;
             Double valor;
-            while (i < Main.ciudades - 1) { // Mientras no asociemos todas las ciudades a la solución
+            if(Main.Aleatorios.size()==0){ // Si no se inicializó el aray de aleatorios lo inicializamos
                 line = br.readLine();
-                valor = Double.parseDouble(line);
-
-                int randomNumber = (int) (floor((valor * 9))) + 1;
+                while(line!=null){
+                    valor = Double.parseDouble(line);
+                    randomNumber = (int) (floor((valor * 9)));
+                    Main.Aleatorios.add(randomNumber);
+                    line = br.readLine();
+                }
+                br.close();
+            }
+            while (i < Main.ciudades - 1) { // Mientras no asociemos todas las ciudades a la solución
+                randomNumber = (Main.Aleatorios.get(Main.posAleatorios))+1;
                 if (!Main.Sinicial.contains(randomNumber)) {
                     Main.Sinicial.add(randomNumber);
-                } else {
+                    Main.posAleatorios++;
+                }
+                else {
                     while (Main.Sinicial.contains(randomNumber)) {
                         if (randomNumber == (Main.ciudades - 1)) { // Si es la ultima ciudad posible, la siguiente será la primera
                             randomNumber = 1;
@@ -95,10 +104,10 @@ public class Operations{
                         }
                     }
                     Main.Sinicial.add(randomNumber);
+                    Main.posAleatorios++;
                 }
                 i++;
             }
-            br.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -113,17 +122,19 @@ public class Operations{
         // Se comprueba si se ha generado un nuevo vecino no generado previamente, si no es así, se incrementa la posición destino, hasta que no se pueda incrementar más que se incrementa la posición origen y se repite el proceso hasta encontrar uno no generado
         if (Main.vecinosGenerados<((Main.ciudades-1)*(Main.ciudades-2)/2)){ // Si no se han generado todos los vecinos ¡¡ESTO CREO QUE SOBRARÁ!!
             valor=random();
-            random1=(int)(floor((valor * (Main.ciudades-2))));
+            random1=(int)(floor((valor * (Main.ciudades-1))));
 
             valor=random();
-            random2=(int)(floor((valor * (Main.ciudades-2))));
+            random2=(int)(floor((valor * (Main.ciudades-1))));
 
             if (random2==random1){ // Si los numeros aleatorios generados son iguales, incrementamos en uno el segundo número para que no sea así
-                if(random2==(Main.ciudades-2)){ // Si se ha llegado al límite se vuelve a 0
+                if(random1==(Main.ciudades-2)){ // Si se ha llegado al límite se vuelve a 0
                     random2=0;
+                    random1=1;
                 }
                 else{
-                    random2++;
+                    random2=0;
+                    random1++;
                 }
             }
             else{
@@ -194,7 +205,91 @@ public class Operations{
         }
     }
 
-    public static void intercambio(String FileName){
+    public static void intercambioArch(){
+        int random1,random2;
+        int aux;
+        // Se comprueba si se ha generado un nuevo vecino no generado previamente, si no es así, se incrementa la posición destino, hasta que no se pueda incrementar más que se incrementa la posición origen y se repite el proceso hasta encontrar uno no generado
+        if (Main.vecinosGenerados<((Main.ciudades-1)*(Main.ciudades-2)/2)){ // Si no se han generado todos los vecinos ¡¡ESTO CREO QUE SOBRARÁ!!
+            random1=Main.Aleatorios.get(Main.posAleatorios);
+            Main.posAleatorios++;
+            random2=Main.Aleatorios.get(Main.posAleatorios);
+            Main.posAleatorios++;
+            if (random2==random1){ // Si los numeros aleatorios generados son iguales, incrementamos en uno el segundo número para que no sea así
+                if(random1==(Main.ciudades-2)){ // Si se ha llegado al límite se vuelve a 0
+                    random2=0;
+                    random1=1;
+                }
+                else{
+                    random2=0;
+                    random1++;
+                }
+            }
+            else{
+                if(random2>random1){
+                    aux=random1;
+                    random1=random2;
+                    random2=aux;
+                }
+            }
+
+            boolean nuevo=false;
+
+            while(nuevo==false){
+                if(Main.Vecinos.get(conversorTuplaPosicion(random1,random2))==0){
+                    Main.Vecinos.set(conversorTuplaPosicion(random1,random2),1);
+                    nuevo=true;
+                }
+                else{
+                    if(random2==random1-1){
+                        random2=0;
+                        if(random1==Main.ciudades-2){
+                            random1=1;
+                        }
+                        else{
+                            random1++;
+                        }
+                    }
+                    else{
+                        random2++;
+                    }
+                }
+            }
+            Main.vecinosGenerados++;
+            System.out.print("Vecino ("+random1+", "+random2+")\n Solución Nueva -> [");
+
+            /*
+            int i=0;
+            aux=Main.Sinicial.get(random1);
+            Main.Sinicial.set(random1,Main.Sinicial.get(random2));
+            Main.Sinicial.set(random2,aux);
+            while(i<Main.Sinicial.size()){
+                System.out.print(Main.Sinicial.get(i)+";");
+                i++;
+            }
+            initializeNeighbors();
+            Main.vecinosGenerados=0;
+            */
+
+            int i=0;
+            while(i<Main.Sinicial.size()){
+                if(i==random1){
+                    System.out.print(Main.Sinicial.get(random2)+";");
+                }
+                else{
+                    if(i==random2){
+                        System.out.print(Main.Sinicial.get(random1)+";");
+                    }
+                    else{
+                        System.out.print(Main.Sinicial.get(i)+";");
+                    }
+                }
+                i++;
+            }
+            System.out.print("]\n");
+        }
+        else{
+            System.out.println("Todos los vecinos han sido ya generados");
+        }
     }
 
     /*
@@ -239,5 +334,18 @@ public class Operations{
         posicion+=menor;
 
         return posicion;
+    }
+
+    public static Integer calculoDistancia(){
+        Integer distancia=0;
+
+        distancia=distancia+Main.Distancias.get(conversorTuplaPosicion(Main.Sinicial.get(0),0));
+        distancia=distancia+Main.Distancias.get(conversorTuplaPosicion(Main.Sinicial.get(Main.Sinicial.size()-1),0));
+        int i=0;
+        while(i<Main.ciudades-2){
+            distancia=distancia+Main.Distancias.get(conversorTuplaPosicion(Main.Sinicial.get(i),Main.Sinicial.get(i+1)));
+            i++;
+        }
+        return distancia;
     }
 }
