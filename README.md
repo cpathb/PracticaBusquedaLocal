@@ -28,3 +28,31 @@ El criterio de aceptación será el **primero mejor** de los vecinos.
 
 ### Criterio de parada
 Se finalizará la búsqueda cuando se recorra **todo el vecindario** y no se obtengan soluciones mejores que la actual.
+
+## Compilación, generación de ejecutable y ejecución
+El proyecto ha sido desarrollado empleando el IDE [IntelliJ IDEA 2016.2.5](https://www.jetbrains.com/idea/), por lo que la compilación, ejecución y la generación del .jar se ha realizado empleando este IDE, aunque se ha probado a ejecutar el .jar en una terminal para comprobar el funcionamiento del .jar generado.
+
+### Compilación
+Dentro del IDE se seleccionará la opción **Build** y dentro de esta la opción **Make Project**.
+
+### Generación de ejecutable
+Para generar el ejecutable dentro del IDE se seleccionará la opción **Build** y dentro de esta la opción **Build Artifacts...** y en el menú contextual que se despliega se seleccionará **Build**.
+
+### Ejecución
+#### Ejecución dentro del IDE
+Dentro del IDE se tiene la opción de indicar los parámetros de entrada seleccionando la opción **Run** y posteriormente la opción **Edit configurations...**. Una vez en la pantalla de configuración, en el textbox para **Program arguments:** se indicarán los argumentos con los que queremos realizar la ejecución separados por un espacio. En nuestro caso se introducirá lo siguiente:
+- Si queremos ejecutar sin leer un fichero de aleatorios, podemos no poner ningún argumento o poner como argumento el nombre del fichero de distancias, en mi caso:
+  > distancias.txt
+- Si queremos leer de un fichero de aleatorios nos vemos en la obligación de indicar el fichero de distancias y el de aleatorios en este orden, en mi caso:
+  > distancias.txt aleatorios.txt
+
+Para el correcto funcionamiento es necesario que los ficheros que se van a leer estén en el contenidos en el directorio inmediato del proyecto.
+
+#### Ejecución en una terminal usando el .jar
+El .jar está ubicado en la carpeta *out/artifacts/PracticaBusquedaLocal_jar**, el comando para ejecutarlo es el siguiente:
+
+> java -jar PracticaBusquedaLocal.jar
+
+Los argumentos que se le pueden pasar y el tipo de ejecución que se realizará en función de los que se le pasen, coincide con el apartado anterior.
+
+Para el correcto funcionamiento es necesario que los ficheros que se van a leer estén en el mismo directorio que el **.jar**.
