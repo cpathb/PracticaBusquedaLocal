@@ -85,7 +85,7 @@ public class Operations{
                 line = br.readLine();
                 while(line!=null){
                     valor = Double.parseDouble(line);
-                    randomNumber = (int) (floor((valor * 9)));
+                    randomNumber = (int) (floor((Main.ciudades-1)));
                     Main.Aleatorios.add(randomNumber);
                     line = br.readLine();
                 }
